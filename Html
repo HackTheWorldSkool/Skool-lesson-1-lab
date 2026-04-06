@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1.1: The Hacker's Code</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --primary: #238636; /* GitHub Green */
+            --terminal-green: #39ff14;
+            --text: #c9d1d9;
+            --danger: #f85149;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .wrapper {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* Header Area */
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        h1 { color: white; margin: 0; font-size: 1.8rem; }
+        .status { font-family: monospace; color: var(--terminal-green); font-size: 0.9rem; }
+
+        /* Terminal Style Section */
+        .terminal {
+            background: #000;
+            border-radius: 6px;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+            border: 1px solid #30363d;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background: var(--terminal-green);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+
+        /* Cards */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .card {
+            background: var(--surface);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+        }
+        .card h3 { margin-top: 0; color: var(--terminal-green); }
+        .card.black { border-top: 4px solid var(--danger); }
+        .card.white { border-top: 4px solid var(--primary); }
+
+        /* Button & Interaction */
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .btn:hover { opacity: 0.8; }
+
+        .hidden { display: none; }
+        
+        input {
+            background: transparent;
+            border: none;
+            color: var(--terminal-green);
+            font-family: inherit;
+            font-size: inherit;
+            outline: none;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+        <div class="status">> SESSION_ESTABLISHED: 127.0.0.1</div>
+        <h1>1.1 The Ethical Hacker's Code</h1>
+    </header>
+
+    <div class="terminal" id="terminal-box">
+        <p style="color: var(--terminal-green)">[SYSTEM] To access the Rules of Engagement, type "decrypt" and press Enter:</p>
+        <p>> <input type="text" id="cmdInput" autofocus></p>
+    </div>
+
+    <div id="mainContent" class="hidden">
+        <section>
+            <h2>Mission Parameters</h2>
+            <p>Knowledge is a weapon. In this course, we don't just teach you how to use the tools; we teach you how to remain a professional. To succeed, you must distinguish yourself from the chaos.</p>
+            
+            <div class="grid">
+                <div class="card white">
+                    <h3>White Hat</h3>
+                    <p>Authorized. Legal. Helpful. You hack to find vulnerabilities so they can be patched before the bad guys find them.</p>
+                </div>
+                <div class="card black">
+                    <h3>Black Hat</h3>
+                    <p>Unauthorized. Malicious. Selfish. These individuals destroy value and steal data for personal gain.</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-top: 40px;">
+            <h3>The 3 Golden Laws</h3>
+            <ol>
+                <li><strong>Written Permission:</strong> Never touch a box without a signed contract.</li>
+                <li><strong>Scope:</strong> If the client says "Test the Web App," do NOT test their Wi-Fi.</li>
+                <li><strong>Data Integrity:</strong> Look, but don't touch. If you find sensitive data, report it and stop.</li>
+            </ol>
+            <button class="btn" onclick="alert('Proceed to Skool and comment I AGREE to unlock Module 1.2!')">I Understand the Code</button>
+        </section>
+    </div>
+</div>
+
+<script>
+    const input = document.getElementById('cmdInput');
+    const terminal = document.getElementById('terminal-box');
+    const content = document.getElementById('mainContent');
+
+    input.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            const val = input.value.toLowerCase();
+            if (val === 'decrypt') {
+                terminal.innerHTML = '<p style="color: var(--terminal-green)">[SUCCESS] Access Granted. Decrypting file...</p>';
+                setTimeout(() => {
+                    terminal.classList.add('hidden');
+                    content.classList.remove('hidden');
+                }, 1000);
+            } else {
+                alert('Access Denied. Try typing "decrypt"');
+                input.value = '';
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
